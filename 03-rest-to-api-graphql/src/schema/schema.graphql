@@ -29,7 +29,7 @@ type Circuit {
   location: Location!
 }
 
-type Circuit {
+type Location {
   lat: String!
   lng: String!
   locality: String!
