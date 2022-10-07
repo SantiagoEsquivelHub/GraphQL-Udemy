@@ -1,11 +1,11 @@
 // Añadir los imports
 import express from 'express';
 import compression from 'compression';
+import expressPlayGround from 'graphql-playground-middleware-express';
 import cors from 'cors';
 import schema from './schema';
 import { ApolloServer } from 'apollo-server-express';
 import { createServer } from 'http';
-import expressPlayGround from 'graphql-playground-middleware-express';
 import { dataSources } from './data';
 
 async function init() {
@@ -24,6 +24,7 @@ async function init() {
     dataSources: () => ({
       seasons: new dataSources.SeasonsData(),
       races: new dataSources.RacesData(),
+      drivers: new dataSources.DriversData(),
     }), // Necesario
   });
 
