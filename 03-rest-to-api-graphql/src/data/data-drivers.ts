@@ -1,3 +1,4 @@
+import { checkRound, checkYear } from '../lib/utils';
 import { F1 } from './data-source';
 
 export class DriversData extends F1 {
@@ -18,6 +19,25 @@ export class DriversData extends F1 {
     const filter = `limit=${limit}&offset=${offset}`;
 
     return this.get(`drivers.json?${filter}`, {
+      cacheOptions: { ttl: 60 },
+    });
+  }
+
+  async getDriversByYear(year: string) {
+    year = checkYear(year);
+
+    return await this.get(String(year) + '/drivers.json', {
+      //TTL= time to live
+      cacheOptions: { ttl: 60 },
+    });
+  }
+
+  async getDriversByYearAndRound(year: string, round: number) {
+    year = checkYear(year);
+    round = checkRound(round);
+
+    return await this.get(year + '/' + round + '/drivers.json', {
+      //TTL= time to live
       cacheOptions: { ttl: 60 },
     });
   }
