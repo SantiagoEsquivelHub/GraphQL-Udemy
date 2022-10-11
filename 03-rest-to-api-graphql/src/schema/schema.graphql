@@ -1,22 +1,52 @@
 type Query {
+  "Lista de las temporadas de la Formula 1. De 1950 hasta el año actual"
   seasonsList: [Season!]!
+
+  """
+  Obtenemos la información de las carreras seleccionadas por año.
+  Tener en cuenta que sólo existen temporadas desde 1950 hasta el año actual
+  """
   racesByYear(year: String!): [Race!]
+
+  "Carrera seleccionada por año y por numero de carrera."
   raceSelect(year: String!, round: Int!): Race
+
+  """
+  Lista de pilotos de la F1 de toda la historia.
+  Tenemos dos opciones:
+  Por un lado podemos obtener todos los pilotos
+  Por otro lado, hacemos uso de la paginación y podemos limitar el número de resultados
+  """
   historyDrivers(pageElements: Int, page: Int): [Driver!]!
+
+  """
+  Obtenemos la información de los pilotos seleccionados por año.
+  Tener en cuenta que sólo existen temporadas desde 1950 hasta el año actual
+  """
   driversYear(year: String!): [Driver!]!
+
+  """
+  Obtenemos la información de los pilotos seleccionados por año y numero de carrera.
+  Tener en cuenta que sólo existen temporadas desde 1950 hasta el año actual
+  """
   driversYearAndRound(year: String!, round: Int!): [Driver!]!
+
+  "Obtenemos la información del piloto mediante el id"
+  driverSelect(id: String!): Driver!
 }
 
 type Mutation {
   add(value: String!): [String]
 }
 
+"Información de la temporada"
 type Season {
   year: String!
   url: String!
   urlMobile: String
 }
 
+"Información de la carrera"
 type Race {
   season: String!
   round: String!
@@ -28,6 +58,7 @@ type Race {
   time: String
 }
 
+"Información del circuito"
 type Circuit {
   id: String!
   url: String!
@@ -36,6 +67,7 @@ type Circuit {
   location: Location!
 }
 
+"Información de la ubicación"
 type Location {
   lat: String!
   lng: String!
@@ -43,6 +75,7 @@ type Location {
   country: String!
 }
 
+"Información del piloto"
 type Driver {
   id: String!
   url: String!
