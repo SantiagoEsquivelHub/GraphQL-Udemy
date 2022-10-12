@@ -48,4 +48,5 @@ export class DriversData extends F1 {
       cacheOptions: { ttl: 60 },
     });
   }
+
 }

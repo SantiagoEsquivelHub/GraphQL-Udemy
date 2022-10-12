@@ -25,6 +25,14 @@ const typeSeason: IResolvers = {
     name: (parent) => parent.givenName + ' ' + parent.familyName,
     urlMobile: (parent) => getWikipediaMobileUrl(parent.url),
   },
+  Constructor: {
+    id: (parent) => parent.constructorId,
+    urlMobile: (parent) => getWikipediaMobileUrl(parent.url),
+  },
+  DriverStanding: {
+    driver: (parent) => parent.Driver,
+    constructors: (parent) => parent.Constructors,
+  },
 };
 
 export default typeSeason;
