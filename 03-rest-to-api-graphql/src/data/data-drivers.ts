@@ -1,4 +1,4 @@
-import { checkRound, checkYear } from '../lib/utils';
+import { checkRound, checkYear, paginationOptions } from '../lib/utils';
 import { F1 } from './data-source';
 
 export class DriversData extends F1 {
@@ -13,12 +13,7 @@ export class DriversData extends F1 {
       });
     }
 
-    //offset = desde donde quiero empezar a retornar la data
-    const offset = page - 1;
-    const limit = pageElements;
-    const filter = `limit=${limit}&offset=${offset}`;
-
-    return this.get(`drivers.json?${filter}`, {
+    return this.get(`drivers.json?${paginationOptions(pageElements, page)}`, {
       cacheOptions: { ttl: 60 },
     });
   }

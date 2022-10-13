@@ -22,3 +22,13 @@ export const checkRound = (round: number) => {
 
   return round;
 };
+
+export const paginationOptions = (pageElements: number, page: number) => {
+
+  //offset = desde donde quiero empezar a retornar la data
+  const offset = (page - 1) * pageElements;
+  const limit = pageElements;
+  const filter = `limit=${limit}&offset=${offset}`;
+
+  return filter;
+}

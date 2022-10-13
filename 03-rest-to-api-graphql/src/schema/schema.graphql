@@ -36,6 +36,15 @@ type Query {
 
   "Obtener la clasificación general de pilotos por temporada"
   seasonPilotsRaking(year: String!): [DriverStanding!]!
+
+  """
+  Lista de todos los circuitos de toda la historia.
+   Mostrar todos y por paginación
+  """
+  historyCircuits(pageElements: Int, page: Int): [Circuit!]!
+
+  "Información de un circuito seleccionado"
+  cirtuitSelect(id: String!): Circuit!
 }
 
 type Mutation {

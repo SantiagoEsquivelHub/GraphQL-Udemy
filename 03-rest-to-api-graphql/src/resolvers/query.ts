@@ -1,4 +1,5 @@
 import { IResolvers } from 'graphql-tools';
+import { dataSources } from '../data';
 
 const query: IResolvers = {
   Query: {
@@ -43,6 +44,19 @@ const query: IResolvers = {
         .then(
           (data: any) => (data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
         );
+    },
+    async historyCircuits(_: void, { pageElements, page }, { dataSources }) {
+      return await dataSources.circuits
+      .getCircuits(pageElements, page)
+      .then(
+        (data: any) => data.MRData.CircuitTable.Circuits
+        );
+    },
+
+    async cirtuitSelect(_: void, { id }, { dataSources }) {
+      return await dataSources.circuits
+        .getCircuit(id)
+        .then((data: any) => data.MRData.CircuitTable.Circuits[0]);
     },
   },
 };
